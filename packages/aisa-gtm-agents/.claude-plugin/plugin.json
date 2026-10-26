@@ -1,0 +1,13 @@
+{
+  "name": "aisa-gtm",
+  "displayName": "AIsa GTM",
+  "version": "1.0.0",
+  "description": "Evidence-backed GTM research and marketing workflows powered by AIsa.",
+  "author": {
+    "name": "AIsa",
+    "url": "https://aisa.one"
+  },
+  "homepage": "https://aisa.one",
+  "repository": "https://github.com/AIsa-team/aisa-plugins",
+  "keywords": ["marketing", "research", "gtm", "seo"]
+}

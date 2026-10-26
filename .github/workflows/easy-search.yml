@@ -1,0 +1,34 @@
+name: Easy Search
+
+on:
+  pull_request:
+    paths:
+      - 'packages/easy-search-dsh/**'
+      - '.github/workflows/easy-search.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'packages/easy-search-dsh/**'
+      - '.github/workflows/easy-search.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/easy-search-dsh
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 11.7.0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: packages/easy-search-dsh/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run check

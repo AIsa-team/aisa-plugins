@@ -1,0 +1,128 @@
+{
+  "$schema": "https://developers.openai.com/apps-sdk/schemas/chatgpt-app-submission.v1.json",
+  "schema_version": 1,
+  "app_info": {
+    "display_name": "AIsa GTM",
+    "subtitle": "Research markets and prospects",
+    "description": "AIsa GTM helps users discover research capabilities, inspect their inputs, obtain cost estimates, and run authorized market, customer, creator, prospect, and website research through ChatGPT.",
+    "category": "BUSINESS"
+  },
+  "tools": {
+    "AISA_SEARCH_TOOL": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Searches the bounded AIsa tool catalog and records the request in service logs.",
+        "open_world_justification": "Discovery is limited to the AIsa catalog and does not contact arbitrary external entities.",
+        "destructive_justification": "Does not execute catalog tools, delete data, or send irreversible messages."
+      }
+    },
+    "AISA_BATCH_GET_SCHEMA": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Retrieves contracts for published AIsa tools and records the request in service logs.",
+        "open_world_justification": "Only looks up tools in the bounded AIsa catalog and its availability service.",
+        "destructive_justification": "Does not execute tools, delete data, or send irreversible messages."
+      }
+    },
+    "AISA_BATCH_QUOTE": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": true,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Sends proposed calls for cost estimates and records quote requests in service logs without executing the proposed research.",
+        "open_world_justification": "Quote arguments may identify an open-ended set of public websites, companies, or people served by published tools.",
+        "destructive_justification": "Requests a cost estimate without running the proposed tool calls or performing irreversible actions."
+      }
+    },
+    "AISA_BATCH_USE": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": true,
+        "destructiveHint": true
+      },
+      "justifications": {
+        "read_only_justification": "Executes authorized published API calls, which can change external state and incur charges.",
+        "open_world_justification": "Published calls can reach an open-ended set of public websites, companies, people, and other external entities.",
+        "destructive_justification": "Published calls can perform irreversible external actions and incur charges; the tool description requires a matching quote and explicit authorization."
+      }
+    }
+  },
+  "test_cases": [
+    {
+      "description": "Discover research capabilities for a complete market research goal.",
+      "user_prompt": "What AIsa capabilities could help me compare three competitors in the US, including positioning and website traffic? Show the available tools before any paid research.",
+      "file_attachment_urls": null,
+      "tools_triggered": "AISA_SEARCH_TOOL",
+      "expected_output": "Returns relevant capabilities and explains which parts of the request each can support.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Inspect the exact input contract for a discovered tool.",
+      "user_prompt": "For the AIsa tool you just found for website traffic, get its full argument schema before preparing a request.",
+      "file_attachment_urls": null,
+      "tools_triggered": "AISA_BATCH_GET_SCHEMA",
+      "expected_output": "Returns the discovered tool's required inputs and constraints without running it.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Quote a bounded research request without executing it.",
+      "user_prompt": "Using the confirmed AIsa schema, quote the exact request to research these three competitor domains for the US. Do not execute it yet.",
+      "file_attachment_urls": null,
+      "tools_triggered": "AISA_BATCH_QUOTE",
+      "expected_output": "Shows the estimate and any uncertainty for the exact proposed calls without presenting research results.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Execute a previously quoted request after explicit matching authorization.",
+      "user_prompt": "I authorize the three-domain US research request exactly as quoted above, including the stated estimate risk. Run it now and summarize each result.",
+      "file_attachment_urls": null,
+      "tools_triggered": "AISA_BATCH_USE",
+      "expected_output": "Runs only the authorized calls and reports results, item-level failures, and actual charges when returned.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Quote a mixed batch and preserve item-level failures.",
+      "user_prompt": "Quote the two exact AIsa research calls prepared above, and tell me separately if either call cannot be priced. Do not run either call.",
+      "file_attachment_urls": null,
+      "tools_triggered": "AISA_BATCH_QUOTE",
+      "expected_output": "Reports each quote or pricing failure separately and does not execute the calls.",
+      "expected_output_url": null
+    }
+  ],
+  "negative_test_cases": [
+    {
+      "description": "Do not invoke the app for general writing from supplied material.",
+      "user_prompt": "Rewrite this paragraph to sound clearer and shorter.",
+      "file_attachment_urls": null,
+      "tools_triggered": null,
+      "expected_output": "Answers directly without calling AIsa tools.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Do not invoke the app for personal calendar management.",
+      "user_prompt": "What meetings do I have tomorrow, and can you move the first one?",
+      "file_attachment_urls": null,
+      "tools_triggered": null,
+      "expected_output": "Does not call AIsa because calendar management is outside the app's workflows.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Do not invoke the app to deliver outreach.",
+      "user_prompt": "Send this finished sales email to my contact and enroll them in a follow-up sequence.",
+      "file_attachment_urls": null,
+      "tools_triggered": null,
+      "expected_output": "Does not call AIsa because the app does not send messages or enroll contacts.",
+      "expected_output_url": null
+    }
+  ]
+}

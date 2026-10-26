@@ -1,0 +1,23 @@
+{
+  "name": "aisa",
+  "owner": {
+    "name": "AIsa Team",
+    "email": "developer@aisa.one"
+  },
+  "metadata": {
+    "description": "AIsa Tool Router and productivity plugins for Cursor."
+  },
+  "plugins": [
+    {
+      "name": "aisa",
+      "source": "./packages/aisa-cursor",
+      "description": "Connect to the AIsa Tool Router MCP (Streamable HTTP + OAuth) for search, data, and productivity tools.",
+      "category": "integrations",
+      "tags": [
+        "aisa",
+        "mcp",
+        "tools"
+      ]
+    }
+  ]
+}

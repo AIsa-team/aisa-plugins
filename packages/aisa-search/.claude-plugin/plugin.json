@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "aisa-search",
+  "displayName": "AIsa Search",
+  "version": "0.1.2",
+  "description": "Search across the web, X, YouTube, and Scholar with AIsa APIs.",
+  "author": {
+    "name": "AIsa Team",
+    "email": "developer@aisa.one"
+  },
+  "homepage": "https://aisa.one",
+  "repository": "https://github.com/AIsa-team/aisa-plugins",
+  "keywords": ["research", "search", "twitter", "youtube", "scholar"]
+}

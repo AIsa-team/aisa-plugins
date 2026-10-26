@@ -1,0 +1,22 @@
+{
+  "name": "aisa",
+  "displayName": "AIsa",
+  "version": "0.1.0",
+  "description": "Connect to the AIsa Tool Router MCP (Streamable HTTP + OAuth) for search, data, and productivity tools.",
+  "author": {
+    "name": "AIsa Team",
+    "email": "developer@aisa.one"
+  },
+  "homepage": "https://aisa.one",
+  "repository": "https://github.com/AIsa-team/aisa-plugins",
+  "license": "MIT",
+  "keywords": [
+    "aisa",
+    "mcp",
+    "tools",
+    "oauth",
+    "tool-router"
+  ],
+  "logo": "assets/logo.png",
+  "mcpServers": "./mcp.json"
+}

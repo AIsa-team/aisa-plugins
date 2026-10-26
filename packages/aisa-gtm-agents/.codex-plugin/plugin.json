@@ -1,0 +1,43 @@
+{
+  "name": "aisa-gtm",
+  "version": "1.0.0+codex.20260917041315",
+  "description": "GTM intelligence and marketing workflows powered by AIsa.",
+  "author": {
+    "name": "AIsa",
+    "url": "https://aisa.one"
+  },
+  "homepage": "https://aisa.one",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "AIsa GTM",
+    "shortDescription": "Research markets, customers, prospects and websites, then turn evidence into GTM decisions and outreach drafts.",
+    "developerName": "AIsa",
+    "websiteURL": "https://aisa.one",
+    "privacyPolicyURL": "https://aisa.one/privacy",
+    "termsOfServiceURL": "https://aisa.one/terms",
+    "longDescription": "AIsa MCP powered GTM research, customer insight, B2B prospecting, content strategy, creator marketing, SEO audit, AI search visibility and evidence-grounded cold-email drafting workflows.",
+    "category": "Marketing",
+    "defaultPrompt": [
+      "Help me compare a brand with three competitors. Ask for the brand and competitor websites, then assess positioning, pricing and customer proof.",
+      "Help me analyze customer interviews and reviews. Ask me to share the source material, then identify needs, buying triggers and objections with cited quotes.",
+      "Help me find 10 B2B prospects. Ask for my ideal customer profile and target market, then rank companies by fit and show the evidence and gaps.",
+      "Help me choose 3\u20135 creators. Ask for the brand, target audience, market, budget and any existing proposals, then plan a measurable pilot.",
+      "Help me build a 90-day content roadmap. Ask for my business goals, target audience and any customer, keyword or existing-content data first.",
+      "Help me audit a website for SEO. Ask for its URL and target market, then inspect key pages and prioritize technical and on-page fixes.",
+      "Help me draft a cold email and three follow-ups. Ask for the recipient, value proposition and supporting proof, then prepare drafts for review.",
+      "Help me assess AI search visibility. Ask for the brand, website, market and sample questions, then examine mentions and citations and recommend improvements."
+    ],
+    "capabilities": [
+      "Market research",
+      "Competitor analysis",
+      "Customer research",
+      "B2B prospecting",
+      "Creator marketing",
+      "Content strategy",
+      "SEO audit",
+      "Cold email drafting and review",
+      "AI search visibility"
+    ]
+  }
+}

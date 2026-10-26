@@ -1,0 +1,86 @@
+# AIsa Plugins
+
+A collection of independently maintained plugins and integrations from AIsa.
+Use this repository to find a plugin, identify its maintainer, and work on its
+source. Each package keeps its own native manifests, dependencies, tests, and
+release process.
+
+## Catalog
+
+| Plugin | Hosts | Purpose | Maintainer | Install and develop |
+| --- | --- | --- | --- | --- |
+| AIsa (`aisa`) | Cursor | Connect Cursor to AIsa Tool Router MCP with OAuth. | [@eddiearc](https://github.com/eddiearc) | [aisa-cursor](packages/aisa-cursor/README.md) |
+| AIsa Search (`aisa-search`) | Claude Code, Codex, Dify | Search web, X, YouTube, and Scholar. | [@zhenlonghe](https://github.com/zhenlonghe) | [aisa-search](packages/aisa-search/README.md) |
+| Go-to-Market (`go-to-market`) | Dify | GTM data tools for traffic, keywords, social, prospects, and creators. | [@lhymmEU](https://github.com/lhymmEU) | [aisa-gtm-dify](packages/aisa-gtm-dify/README.md) |
+| AIsa GTM (`aisa-gtm`) | Claude Code, Codex | Agent workflows for market research, customer insight, content, and SEO. | [@lhymmEU](https://github.com/lhymmEU) | [aisa-gtm-agents](packages/aisa-gtm-agents/README.md) |
+| Easy Search (`@aisa-plugins/easy-search`) | DeepSeek Harness | Search and extraction with AIsa or direct provider keys. | [@aisa-barry](https://github.com/aisa-barry) | [easy-search-dsh](packages/easy-search-dsh/README.md) |
+
+The two GTM plugins are separate packages with distinct published identities.
+Directory names organize the collection; native plugin and npm package names are
+preserved. Maintainers above follow the imported projects; repository access is
+managed separately by the organization.
+
+## Layout
+
+```text
+packages/                         independent plugin projects
+.claude-plugin/marketplace.json    Claude Code installation catalog
+.agents/plugins/marketplace.json   Codex installation catalog
+.cursor-plugin/marketplace.json    Cursor installation catalog
+.github/CODEOWNERS                review routing
+.github/workflows/                registry and package checks
+IMPORTS.md                        original repositories and exact source commits
+```
+
+There is no repository-wide application, dependency workspace, or shared release
+version. Run development and packaging commands from the relevant package. Host
+catalogs contain the packages supported by that host.
+
+For Claude Code, add this collection with:
+
+```bash
+claude plugin marketplace add AIsa-team/aisa-plugins
+claude plugin install aisa-search@aisa
+claude plugin install aisa-gtm@aisa
+```
+
+For other hosts and local development, use the package README linked above.
+This repository makes plugin source and catalogs available; existing marketplace
+listings and package releases are managed separately.
+
+## Skills and MCP
+
+[AIsa-team/agent-skills](https://github.com/AIsa-team/agent-skills) remains the
+dedicated repository for reusable skills. Existing plugin skill bundles are
+preserved here as part of the imported packages; their import commits are recorded
+in [IMPORTS.md](IMPORTS.md). Future reuse should reference that skills repository
+where the host supports it, or bundle a recorded snapshot when the host requires
+local files.
+
+Plugins may connect to AIsa's hosted MCP endpoint. The `AIsa-mcp-server` project
+and its server/bridge implementation are excluded from this collection.
+
+## Maintenance
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for adding and releasing a package.
+Run the dependency-free collection check from the repository root:
+
+```bash
+python3 scripts/check_registry.py
+```
+
+Package READMEs document their own offline tests and build commands. No publishing
+or scheduled live API calls run automatically from this repository.
+
+## Provenance and licensing
+
+These are source snapshots copied from the repositories listed in
+[IMPORTS.md](IMPORTS.md). The original repositories, history, issues, releases, and
+settings remain at their original locations. They were not transferred, modified,
+or deleted as part of this import. Updates are deliberate changes in this
+collection; there is no automatic synchronization back to the originals.
+
+Original license files are retained with the packages that supply them. Some
+imported packages have no standalone license file; this collection does not assign
+a new blanket license to their contents. Preserve existing notices and licensing
+when updating or redistributing a package.

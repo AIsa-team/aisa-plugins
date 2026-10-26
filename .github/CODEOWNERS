@@ -1,0 +1,9 @@
+# Default owner and fallback reviewer for the collection.
+*                               @lhymmEU
+
+# Preserve upstream maintainer routes; GitHub requires write access for owners.
+/packages/aisa-cursor/           @lhymmEU @eddiearc
+/packages/aisa-search/           @lhymmEU @zhenlonghe
+/packages/aisa-gtm-dify/          @lhymmEU
+/packages/aisa-gtm-agents/        @lhymmEU
+/packages/easy-search-dsh/        @lhymmEU @aisa-barry

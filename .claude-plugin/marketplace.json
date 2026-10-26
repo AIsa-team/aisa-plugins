@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "aisa",
+  "description": "Plugins maintained by AIsa: search, research, marketing, and productivity.",
+  "owner": {
+    "name": "AIsa Team",
+    "email": "developer@aisa.one"
+  },
+  "plugins": [
+    {
+      "name": "aisa-search",
+      "source": "./packages/aisa-search",
+      "description": "Search across the web, X, YouTube, and Scholar with linked evidence.",
+      "category": "Productivity",
+      "tags": [
+        "research",
+        "search"
+      ]
+    },
+    {
+      "name": "aisa-gtm",
+      "source": "./packages/aisa-gtm-agents",
+      "description": "Evidence-backed GTM research and marketing workflows powered by AIsa.",
+      "category": "Marketing",
+      "tags": [
+        "marketing",
+        "research",
+        "gtm",
+        "seo"
+      ]
+    }
+  ]
+}

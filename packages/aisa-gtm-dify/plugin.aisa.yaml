@@ -1,0 +1,17 @@
+# Legacy package declaration retained for offline validation.
+# Native manifests remain authoritative; no shared build framework is required.
+schema: 1
+name: aisa-gtm
+version: "0.2.0"
+owners: [lhymmEU]
+description: Go-to-market data tools (traffic, keywords, social, prospects, creators, AI visibility) for Dify.
+languages: [python]
+hosts:
+  dify: dify
+tests:
+  - language: python
+    cwd: dify
+    run: python3 tests/test_offline.py
+version_sources:
+  - dify/manifest.yaml
+  - dify/pyproject.toml

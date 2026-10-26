@@ -1,0 +1,32 @@
+{
+  "name": "aisa",
+  "interface": {
+    "displayName": "AIsa Plugins"
+  },
+  "plugins": [
+    {
+      "name": "aisa-search",
+      "source": {
+        "source": "local",
+        "path": "./packages/aisa-search"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "aisa-gtm",
+      "source": {
+        "source": "local",
+        "path": "./packages/aisa-gtm-agents"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Marketing"
+    }
+  ]
+}

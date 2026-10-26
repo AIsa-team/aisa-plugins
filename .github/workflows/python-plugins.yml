@@ -1,0 +1,41 @@
+name: Python plugins
+
+on:
+  pull_request:
+    paths:
+      - 'packages/aisa-cursor/**'
+      - 'packages/aisa-search/**'
+      - 'packages/aisa-gtm-dify/**'
+      - '.cursor-plugin/**'
+      - '.claude-plugin/**'
+      - '.agents/plugins/**'
+      - '.github/workflows/python-plugins.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'packages/aisa-cursor/**'
+      - 'packages/aisa-search/**'
+      - 'packages/aisa-gtm-dify/**'
+      - '.cursor-plugin/**'
+      - '.claude-plugin/**'
+      - '.agents/plugins/**'
+      - '.github/workflows/python-plugins.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python3 -m pip install PyYAML
+      - name: Cursor manifests and skills
+        run: python3 -m unittest discover -s packages/aisa-cursor/tests -v
+      - name: Search client and adapters
+        run: python3 -m unittest discover -s packages/aisa-search/tests -v
+      - name: Dify GTM offline checks
+        run: python3 packages/aisa-gtm-dify/dify/tests/test_offline.py
