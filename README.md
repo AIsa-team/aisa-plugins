@@ -1,24 +1,22 @@
 # AIsa Plugins
 
 A collection of independently maintained plugins and integrations from AIsa.
-Use this repository to find a plugin, identify its maintainer, and work on its
-source. Each package keeps its own native manifests, dependencies, tests, and
-release process.
+Use this repository to find a plugin and work on its source. Each package keeps
+its own native manifests, dependencies, tests, and release process.
 
 ## Catalog
 
-| Plugin | Hosts | Purpose | Maintainer | Install and develop |
-| --- | --- | --- | --- | --- |
-| AIsa (`aisa`) | Cursor | Connect Cursor to AIsa Tool Router MCP with OAuth. | [@eddiearc](https://github.com/eddiearc) | [aisa-cursor](packages/aisa-cursor/README.md) |
-| AIsa Search (`aisa-search`) | Claude Code, Codex, Dify | Search web, X, YouTube, and Scholar. | [@zhenlonghe](https://github.com/zhenlonghe) | [aisa-search](packages/aisa-search/README.md) |
-| Go-to-Market (`go-to-market`) | Dify | GTM data tools for traffic, keywords, social, prospects, and creators. | [@lhymmEU](https://github.com/lhymmEU) | [aisa-gtm-dify](packages/aisa-gtm-dify/README.md) |
-| AIsa GTM (`aisa-gtm`) | Claude Code, Codex | Agent workflows for market research, customer insight, content, and SEO. | [@lhymmEU](https://github.com/lhymmEU) | [aisa-gtm-agents](packages/aisa-gtm-agents/README.md) |
-| Easy Search (`@aisa-plugins/easy-search`) | DeepSeek Harness | Search and extraction with AIsa or direct provider keys. | [@aisa-barry](https://github.com/aisa-barry) | [easy-search-dsh](packages/easy-search-dsh/README.md) |
+| Plugin | Hosts | Purpose | Install and develop |
+| --- | --- | --- | --- |
+| AIsa (`aisa`) | Cursor | Connect Cursor to AIsa Tool Router MCP with OAuth. | [aisa-cursor](packages/aisa-cursor/README.md) |
+| AIsa Search (`aisa-search`) | Claude Code, Codex, Dify | Search web, X, YouTube, and Scholar. | [aisa-search](packages/aisa-search/README.md) |
+| Go-to-Market (`go-to-market`) | Dify | GTM data tools for traffic, keywords, social, prospects, and creators. | [aisa-gtm-dify](packages/aisa-gtm-dify/README.md) |
+| AIsa GTM (`aisa-gtm`) | Claude Code, Codex | Agent workflows for market research, customer insight, content, and SEO. | [aisa-gtm-agents](packages/aisa-gtm-agents/README.md) |
+| Easy Search (`@aisa-plugins/easy-search`) | DeepSeek Harness | Search and extraction with AIsa or direct provider keys. | [easy-search-dsh](packages/easy-search-dsh/README.md) |
 
 The two GTM plugins are separate packages with distinct published identities.
 Directory names organize the collection; native plugin and npm package names are
-preserved. Maintainers above follow the imported projects; repository access is
-managed separately by the organization.
+preserved.
 
 ## Layout
 
