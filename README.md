@@ -18,6 +18,7 @@ its own native manifests, dependencies, tests, and release process.
 | AIsa Crossborder (`aisa-crossborder`) | WorkBuddy expert | Coordinate cross-border e-commerce research, selection, tracking, and content workflows. | [aisa-crossborder](https://github.com/AIsa-team/aisa-plugins-private/tree/main/workbuddy/aisa-crossborder) |
 | Product Selection | WorkBuddy skill | Research and compare product opportunities. | [product-selection](https://github.com/AIsa-team/aisa-plugins-private/tree/main/workbuddy/product-selection) |
 | Product Tracking | WorkBuddy skill | Track product prices, availability, ratings, and demand signals. | [product-tracking](https://github.com/AIsa-team/aisa-plugins-private/tree/main/workbuddy/product-tracking) |
+| AIsa (`aisa`) | Accio Work | Discover and use AIsa data tools through the AIsa CLI. | [Accio source and submission guide](https://github.com/AIsa-team/aisa-plugins-private/blob/main/accio/SUBMISSION.md) |
 
 The two GTM plugins are separate packages with distinct published identities.
 Directory names organize the collection; native plugin and npm package names are
@@ -25,7 +26,7 @@ preserved.
 
 Private plugin source is grouped by platform in the
 [aisa-plugins-private](https://github.com/AIsa-team/aisa-plugins-private)
-companion repository. WorkBuddy lives under `workbuddy/`. Source links and
+companion repository. WorkBuddy lives under `workbuddy/` and Accio under `accio/`. Source links and
 submission ZIP releases require repository access. The public collection contains only links and brief
 descriptions for these entries.
 
