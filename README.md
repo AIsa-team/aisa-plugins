@@ -13,10 +13,21 @@ its own native manifests, dependencies, tests, and release process.
 | Go-to-Market (`go-to-market`) | Dify | GTM data tools for traffic, keywords, social, prospects, and creators. | [aisa-gtm-dify](packages/aisa-gtm-dify/README.md) |
 | AIsa GTM (`aisa-gtm`) | Claude Code, Codex | Agent workflows for market research, customer insight, content, and SEO. | [aisa-gtm-agents](packages/aisa-gtm-agents/README.md) |
 | Easy Search (`@aisa-plugins/easy-search`) | DeepSeek Harness | Search and extraction with AIsa or direct provider keys. | [easy-search-dsh](packages/easy-search-dsh/README.md) |
+| AIsa Hub (`aisa-connector`) | WorkBuddy connector | Connect WorkBuddy to AIsa services with OAuth. | [aisa-connector](https://github.com/AIsa-team/aisa-workbuddy-plugins/tree/main/packages/aisa-connector) |
+| E-commerce Content Studio | WorkBuddy skill | Research and produce e-commerce content. | [e-commerce-content-studio](https://github.com/AIsa-team/aisa-workbuddy-plugins/tree/main/packages/e-commerce-content-studio) |
+| AIsa Crossborder (`aisa-crossborder`) | WorkBuddy expert | Coordinate cross-border e-commerce research, selection, tracking, and content workflows. | [aisa-crossborder](https://github.com/AIsa-team/aisa-workbuddy-plugins/tree/main/packages/aisa-crossborder) |
+| Product Selection | WorkBuddy skill | Research and compare product opportunities. | [product-selection](https://github.com/AIsa-team/aisa-workbuddy-plugins/tree/main/packages/product-selection) |
+| Product Tracking | WorkBuddy skill | Track product prices, availability, ratings, and demand signals. | [product-tracking](https://github.com/AIsa-team/aisa-workbuddy-plugins/tree/main/packages/product-tracking) |
 
 The two GTM plugins are separate packages with distinct published identities.
 Directory names organize the collection; native plugin and npm package names are
 preserved.
+
+WorkBuddy source lives in the private
+[aisa-workbuddy-plugins](https://github.com/AIsa-team/aisa-workbuddy-plugins)
+companion repository. Its catalog links and versioned submission ZIP releases
+require repository access. The public collection contains only links and brief
+descriptions for these entries.
 
 ## Layout
 
