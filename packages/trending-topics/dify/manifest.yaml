@@ -1,0 +1,36 @@
+version: 0.1.0
+type: plugin
+author: aisa-team
+name: trending-topics
+label:
+  en_US: AIsa Trending Topics
+  ja_JP: AIsa トレンドトピック
+description:
+  en_US: Japan's current X topics with recent Japanese posts and related YouTube videos, through AIsa.
+  ja_JP: AIsa 経由で日本の X トレンド、最近の日本語投稿、関連する YouTube 動画を取得します。
+icon: icon.svg
+repo: https://github.com/AIsa-team/aisa-plugins
+contact: developer@aisa.one
+resource:
+  memory: 268435456
+  permission: {}
+plugins:
+  tools:
+    - provider/trending-topics.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: '3.12'
+    entrypoint: main
+  minimum_dify_version: '1.16.0'
+created_at: 2026-10-29T00:00:00+00:00
+privacy: PRIVACY.md
+tags:
+  - news
+network:
+  domains:
+    - api.aisa.one

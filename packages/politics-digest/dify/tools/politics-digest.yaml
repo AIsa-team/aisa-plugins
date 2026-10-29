@@ -1,0 +1,185 @@
+identity:
+  name: politics-digest
+  author: aisa-team
+  label:
+    en_US: Politics Digest
+    ja_JP: 政治ニュースダイジェスト
+description:
+  human:
+    en_US: Retrieve Japanese politics evidence from Yomiuri, Asahi, Nikkei, Mainichi, and Sankei through AIsa.
+    ja_JP: AIsa経由で読売・朝日・日経・毎日・産経の政治ニュースを出典付きで収集します。
+  llm: Retrieve current source-linked Japanese news evidence. Results are evidence, not an invented narrative. Pass the evidence to a downstream Dify model to write a cited digest. Respect coverage gaps, unknown dates, and excerpt-only content. Preview mode makes no API calls.
+parameters:
+  - name: source
+    type: select
+    required: false
+    default: all
+    label:
+      en_US: Newspaper
+      ja_JP: 新聞社
+    human_description:
+      en_US: Select one newspaper or all five. Missing coverage is reported explicitly.
+      ja_JP: 1紙または全5紙を選びます。収集できなかった新聞社も明示します。
+    llm_description: Select all by default, or a single explicitly requested source or section.
+    form: llm
+    options:
+      - value: all
+        label:
+          en_US: All five newspapers
+          ja_JP: 全5紙
+      - value: yomiuri
+        label:
+          en_US: Yomiuri
+          ja_JP: 読売新聞
+      - value: asahi
+        label:
+          en_US: Asahi
+          ja_JP: 朝日新聞
+      - value: nikkei
+        label:
+          en_US: Nikkei
+          ja_JP: 日本経済新聞
+      - value: mainichi
+        label:
+          en_US: Mainichi
+          ja_JP: 毎日新聞
+      - value: sankei
+        label:
+          en_US: Sankei
+          ja_JP: 産経新聞
+  - name: keywords
+    type: string
+    required: false
+    label:
+      en_US: Focus keywords
+      ja_JP: 絞り込みキーワード
+    human_description:
+      en_US: Optional topic keywords appended to each Japanese query, up to 200 characters.
+      ja_JP: 各検索に追加する任意のキーワード。200文字以内。
+    llm_description: Optional Japanese topic, organization, or person keywords. Keep this empty for a general digest.
+    form: llm
+  - name: lookback_hours
+    type: number
+    required: true
+    default: 24
+    min: 1
+    max: 168
+    precision: 0
+    label:
+      en_US: Lookback hours
+      ja_JP: 対象期間（時間）
+    human_description:
+      en_US: Search the last 1–168 hours. Default 24. JSON timestamps use UTC; the report header displays JST. Undated evidence is identified explicitly.
+      ja_JP: 過去1〜168時間が対象です。既定24時間。一覧冒頭は日本時間、JSON日時はUTCです。公開日時不明の記事は明示します。
+    form: form
+  - name: max_items
+    type: number
+    required: true
+    default: 10
+    min: 1
+    max: 20
+    precision: 0
+    label:
+      en_US: Maximum articles
+      ja_JP: 最大記事数
+    human_description:
+      en_US: Return up to 1–20 deduplicated articles. Coverage can be partial or empty.
+      ja_JP: 重複を除いた記事を1〜20件返します。取得状況によっては一部のみ、または0件になる場合があります。
+    form: form
+  - name: extract_content
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Extract article content
+      ja_JP: 記事本文を追加取得
+    human_description:
+      en_US: Make an additional AIsa extraction request for up to three selected public URLs. Additional API usage may be charged; paywalls may prevent extraction.
+      ja_JP: 選択した公開URLを最大3件、AIsaに追加取得させます。追加のAPI利用料金が発生する場合があります。有料記事は取得できないことがあります。
+    form: form
+  - name: fallback_provider
+    type: select
+    required: false
+    default: none
+    label:
+      en_US: Fallback search
+      ja_JP: 補完検索
+    human_description:
+      en_US: Disabled by default. Brave makes additional AIsa requests only for deficient search lanes and may increase API charges.
+      ja_JP: 既定は無効です。Braveを選ぶと不足した検索のみを追加で補完するため、API利用料金が増える場合があります。
+    form: form
+    options:
+      - value: none
+        label:
+          en_US: Disabled
+          ja_JP: 無効
+      - value: brave
+        label:
+          en_US: Brave News
+          ja_JP: Brave News
+  - name: preview_only
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Preview requests only
+      ja_JP: リクエスト計画のみ表示
+    human_description:
+      en_US: Return the planned requests without network access or API charges.
+      ja_JP: ネットワーク通信やAPI課金を行わず、実行予定のリクエストを返します。
+    form: form
+output_schema:
+  type: object
+  properties:
+    items:
+      type: array
+      description: Deduplicated article evidence with source URLs and freshness information.
+      items:
+        type: object
+    coverage:
+      type: array
+      description: Per-lane retrieval coverage, including missing or partial sources.
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          label:
+            type: string
+          status:
+            type: string
+          matched:
+            type: integer
+          returned:
+            type: integer
+          undated:
+            type: integer
+          errors:
+            type: array
+            items:
+              type: object
+              properties:
+                operation:
+                  type: string
+                type:
+                  type: string
+                message:
+                  type: string
+    warnings:
+      type: array
+      items:
+        type: string
+    status:
+      type: string
+      enum:
+        - ok
+        - partial
+        - empty
+        - error
+        - preview
+    generated_at:
+      type: string
+      description: UTC ISO 8601 report generation timestamp; the readable report header displays JST.
+extra:
+  python:
+    source: tools/politics_digest.py

@@ -1,0 +1,107 @@
+identity:
+  name: trending-topics
+  author: aisa-team
+  label:
+    en_US: Trending Topics
+    ja_JP: トレンドトピック
+description:
+  human:
+    en_US: Get Japan's current X trends and enrich up to three topics with recent Japanese posts and related YouTube videos.
+    ja_JP: 日本の X トレンドを取得し、最大 3 件のトピックに最近の日本語投稿と関連 YouTube 動画を追加します。
+  llm: Gather source evidence for Japan's current X trends. Returns provider ranks, up to three recent Japanese posts and two related YouTube videos per enriched topic, structured coverage, warnings, and deterministic Markdown. YouTube results are related videos, not an official trending-video list. Numeric volumes and unavailable timestamps remain null. Use preview_only=true to inspect a plan without credentials or paid requests. Use a downstream Dify LLM node for editorial synthesis.
+parameters:
+  - name: limit
+    type: number
+    required: false
+    default: 10
+    min: 1
+    max: 20
+    label:
+      en_US: Topic limit
+      ja_JP: トピック数
+    human_description:
+      en_US: Number of topics to return, from 1 to 20.
+      ja_JP: 取得するトピック数。1 ～ 20 件。
+    llm_description: Maximum number of X trends to return, integer 1 to 20, default 10.
+    form: llm
+  - name: lookback_hours
+    type: number
+    required: false
+    default: 6
+    min: 1
+    max: 168
+    label:
+      en_US: Post lookback hours
+      ja_JP: 投稿の対象時間
+    human_description:
+      en_US: Include known X publication times within the last 1 to 168 hours. Unknown times are labeled.
+      ja_JP: 公開日時が判明している X 投稿を過去 1 ～ 168 時間に絞ります。日時不明は明記します。
+    llm_description: X post lookback window in hours, integer 1 to 168, default 6. Does not impose a strict upload window on related YouTube results.
+    form: llm
+  - name: enrich_top_n
+    type: number
+    required: false
+    default: 3
+    min: 0
+    max: 3
+    label:
+      en_US: Topics to enrich
+      ja_JP: 詳細を追加するトピック数
+    human_description:
+      en_US: Enrich the first 0 to 3 returned trends. Set to 0 for a single ranking request.
+      ja_JP: 上位 0 ～ 3 件に投稿と動画を追加します。0 の場合はランキング取得のみです。
+    llm_description: Number of top topics to enrich, integer 0 to 3, default 3. Each topic adds one X search and optionally one YouTube search.
+    form: llm
+  - name: include_videos
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Include related videos
+      ja_JP: 関連動画を含める
+    human_description:
+      en_US: Search YouTube for each enriched topic with Japan and Japanese preferences.
+      ja_JP: 詳細を追加する各トピックについて、日本・日本語設定で YouTube を検索します。
+    llm_description: Include up to two related YouTube videos per enriched topic, default true. These are search results, not platform trending ranks.
+    form: llm
+  - name: preview_only
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Preview requests only
+      ja_JP: リクエストの確認のみ
+    human_description:
+      en_US: Return the request plan without credentials, network access, or API charges.
+      ja_JP: 認証情報・ネットワーク通信・API 料金なしで実行プランを表示します。
+    llm_description: Set true for an offline request preview. Makes no API calls and needs no AIsa key. Default false.
+    form: llm
+output_schema:
+  type: object
+  properties:
+    items:
+      type: array
+      description: Source-ranked X topics with posts and related videos.
+      items:
+        type: object
+    topics:
+      type: array
+      description: Alias of items.
+      items:
+        type: object
+    coverage:
+      type: object
+      description: Source outcomes, fanout limits, and timestamp coverage.
+    warnings:
+      type: array
+      items:
+        type: string
+    status:
+      type: string
+      description: ok, partial, empty, error, or preview.
+    generated_at:
+      type: string
+      description: UTC retrieval time, not a publication timestamp.
+extra:
+  python:
+    source: tools/trending-topics.py

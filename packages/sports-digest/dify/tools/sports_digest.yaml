@@ -1,0 +1,125 @@
+identity:
+  name: sports-digest
+  author: aisa-team
+  label:
+    en_US: Sports Digest
+    ja_JP: スポーツ・ダイジェスト
+description:
+  human:
+    en_US: Retrieve source-linked evidence for sumo, Ohtani, Ichiro, and football, with explicit coverage gaps.
+    ja_JP: 相撲・大谷翔平・イチロー・サッカーの出典付き情報を取得し、最新情報が不足する分野も明示します。
+  llm: Retrieve recent Japanese sports evidence and a deterministic overview. Defaults to four lanes (sumo, Shohei Ohtani, Ichiro Suzuki, football). Use sport and entity to focus on an athlete or team. Outputs are evidence, not an LLM-written article. Missing or uncertain fresh coverage is explicit; do not turn old articles into current events or invent scores. Tool execution may consume AIsa API credit; preview_only produces a request plan without network access.
+parameters:
+  - name: sport
+    type: select
+    required: false
+    default: all
+    options:
+      - value: all
+        label: {en_US: All four lanes, ja_JP: 全4分野}
+      - value: sumo
+        label: {en_US: Sumo, ja_JP: 相撲}
+      - value: baseball
+        label: {en_US: Baseball, ja_JP: 野球}
+      - value: football
+        label: {en_US: Football, ja_JP: サッカー}
+    label: {en_US: Sport, ja_JP: 競技}
+    human_description:
+      en_US: Select all sports or focus on sumo, baseball, or football.
+      ja_JP: 全分野、相撲、野球、サッカーから選びます。
+    llm_description: all searches the four default lanes; baseball searches Ohtani and Ichiro. An entity replaces default lanes with one focused athlete or team search.
+    form: llm
+  - name: entity
+    type: string
+    required: false
+    label: {en_US: Athlete or team, ja_JP: 選手・チーム}
+    human_description:
+      en_US: Optional athlete or team name (up to 100 characters); replaces default lanes with one focused search.
+      ja_JP: 任意の選手・チーム名（100文字以内）。指定すると既定の分野を1つの対象検索に置き換えます。
+    llm_description: Optional exact athlete or team name in Japanese or English. Leave empty for the default lanes. Do not invent a name.
+    form: llm
+  - name: keywords
+    type: string
+    required: false
+    label: {en_US: Additional keywords, ja_JP: 追加キーワード}
+    human_description:
+      en_US: Optional keywords appended to every selected search (up to 200 characters).
+      ja_JP: 各検索に追加する任意のキーワード（200文字以内）。
+    llm_description: Additional topic, tournament, or competition keywords; leave empty for a broad briefing.
+    form: llm
+  - name: lookback_hours
+    type: number
+    required: false
+    default: 24
+    min: 1
+    max: 168
+    label: {en_US: Lookback hours, ja_JP: 過去の時間数}
+    human_description:
+      en_US: Search window in hours, from 1 to 168; default 24.
+      ja_JP: 検索対象期間（1〜168時間、既定24時間）。
+    llm_description: Requested recency window in hours, 1–168. Missing fresh coverage is reported; do not widen automatically.
+    form: llm
+  - name: max_items
+    type: number
+    required: false
+    default: 10
+    min: 1
+    max: 20
+    label: {en_US: Maximum items, ja_JP: 最大記事数}
+    human_description:
+      en_US: Maximum total evidence items, from 1 to 20; default 10.
+      ja_JP: 返す情報の総数（1〜20件、既定10件）。
+    llm_description: Maximum combined evidence items across selected lanes; integer 1–20.
+    form: llm
+  - name: extract_content
+    type: boolean
+    required: false
+    default: false
+    label: {en_US: Extract article excerpts, ja_JP: 記事本文の抜粋取得}
+    human_description:
+      en_US: Optionally extract up to three public articles; may consume additional API credit.
+      ja_JP: 公開記事を最大3件追加抽出します。追加の API 利用料が発生する場合があります。
+    llm_description: Enable only when extra public article excerpts are needed. No subscription login or paywall bypass is performed.
+    form: llm
+  - name: fallback_provider
+    type: select
+    required: false
+    default: none
+    options:
+      - value: none
+        label: {en_US: None, ja_JP: 使用しない}
+      - value: brave
+        label: {en_US: Brave News, ja_JP: Brave News}
+    label: {en_US: Fallback provider, ja_JP: 代替検索プロバイダー}
+    human_description:
+      en_US: Optional bounded Brave News fallback for a coverage gap; may consume additional API credit.
+      ja_JP: 情報不足時の Brave News 代替検索。追加の API 利用料が発生する場合があります。
+    llm_description: none by default. brave permits a bounded alternative search with the same source and date scope. It does not guarantee fresh coverage.
+    form: llm
+  - name: preview_only
+    type: boolean
+    required: false
+    default: false
+    label: {en_US: Preview request plan, ja_JP: 実行計画のみ表示}
+    human_description:
+      en_US: Return a request plan without credentials, network requests, or API charges.
+      ja_JP: 認証情報やネットワーク通信を使わず、API 料金なしで実行計画を返します。
+    llm_description: Set true for an offline plan. Preview output is not fetched news and must never be described as live evidence.
+    form: llm
+extra:
+  python:
+    source: tools/sports_digest.py
+output_schema:
+  type: object
+  properties:
+    items:
+      type: array
+      items: {type: object}
+    coverage:
+      type: array
+      items: {type: object}
+    warnings:
+      type: array
+      items: {type: string}
+    status: {type: string}
+    generated_at: {type: string}

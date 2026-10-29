@@ -11,6 +11,10 @@ its own native manifests, dependencies, tests, and release process.
 | AIsa (`aisa`) | Cursor | Connect Cursor to AIsa Tool Router MCP with OAuth. | [aisa-cursor](packages/aisa-cursor/README.md) |
 | AIsa Search (`aisa-search`) | Claude Code, Codex, Dify | Search web, X, YouTube, and Scholar. | [aisa-search](packages/aisa-search/README.md) |
 | Go-to-Market (`go-to-market`) | Dify | GTM data tools for traffic, keywords, social, prospects, and creators. | [aisa-gtm-dify](packages/aisa-gtm-dify/README.md) |
+| Politics Digest (`politics-digest`) | Dify | Japanese politics evidence from five selected newspapers. | [politics-digest](packages/politics-digest/README.md) |
+| Economy Digest (`economy-digest`) | Dify | Nikkei economic news grouped by section. | [economy-digest](packages/economy-digest/README.md) |
+| Sports Digest (`sports-digest`) | Dify | Sumo, Ohtani, Ichiro, and football news. | [sports-digest](packages/sports-digest/README.md) |
+| Trending Topics (`trending-topics`) | Dify | Japan X trends with recent posts and related YouTube videos. | [trending-topics](packages/trending-topics/README.md) |
 | AIsa GTM (`aisa-gtm`) | Claude Code, Codex | Agent workflows for market research, customer insight, content, and SEO. | [aisa-gtm-agents](packages/aisa-gtm-agents/README.md) |
 | Easy Search (`@aisa-plugins/easy-search`) | DeepSeek Harness | Search and extraction with AIsa or direct provider keys. | [easy-search-dsh](packages/easy-search-dsh/README.md) |
 | AIsa Hub (`aisa-connector`) | WorkBuddy connector | Connect WorkBuddy to AIsa services with OAuth. | [aisa-connector](https://github.com/AIsa-team/aisa-plugins-private/tree/main/workbuddy/aisa-connector) |

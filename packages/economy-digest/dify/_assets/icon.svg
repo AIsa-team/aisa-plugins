@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <title>Economy Digest</title>
+  <defs><linearGradient id="bg" x1="12" y1="8" x2="116" y2="124" gradientUnits="userSpaceOnUse"><stop stop-color="#106B61"/><stop offset="1" stop-color="#073D3D"/></linearGradient></defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <path d="M29 85h13v17H29zm25-18h13v35H54zm25-14h13v49H79z" fill="#A5DFCB"/>
+  <path d="m29 63 25-17 20 4 24-23" stroke="#F2D181" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M82 27h16v16" stroke="#F2D181" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M25 105h75" stroke="#E8FAF3" stroke-width="4" stroke-linecap="round"/>
+</svg>

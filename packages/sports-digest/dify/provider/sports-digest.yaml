@@ -1,0 +1,30 @@
+identity:
+  author: aisa-team
+  name: sports-digest
+  label:
+    en_US: Sports Digest
+    ja_JP: スポーツ・ダイジェスト
+  description:
+    en_US: Source-linked sports reporting for a Japanese daily briefing.
+    ja_JP: 日本向けの日次ブリーフィングに使える出典付きスポーツ報道。
+  icon: icon.svg
+  tags: [news]
+credentials_for_provider:
+  aisa_api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: AIsa API Key
+      ja_JP: AIsa API キー
+    placeholder:
+      en_US: Enter your AIsa API key
+      ja_JP: AIsa API キーを入力
+    help:
+      en_US: Obtain an API key from the AIsa Console. Tool requests may consume API credit.
+      ja_JP: AIsa Console でキーを取得してください。ツール実行には API 利用料が発生する場合があります。
+    url: https://console.aisa.one
+tools:
+  - tools/sports_digest.yaml
+extra:
+  python:
+    source: provider/sports_digest.py

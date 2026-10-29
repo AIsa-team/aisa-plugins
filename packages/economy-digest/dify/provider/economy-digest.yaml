@@ -1,0 +1,31 @@
+identity:
+  author: aisa-team
+  name: economy-digest
+  label:
+    en_US: Economy Digest
+    ja_JP: 経済ニュースダイジェスト
+  description:
+    en_US: Retrieve Nikkei economic news evidence across policy, markets, companies, and the global economy through AIsa.
+    ja_JP: AIsa経由で日経の経済政策・市場・企業・世界経済ニュースを出典付きで収集します。
+  icon: icon.svg
+  tags:
+    - news
+credentials_for_provider:
+  aisa_api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: AIsa API key
+      ja_JP: AIsa APIキー
+    placeholder:
+      en_US: Enter your AIsa API key
+      ja_JP: AIsa APIキーを入力
+    help:
+      en_US: Get your key from AIsa Console. Validation checks its format without a paid request.
+      ja_JP: AIsa Consoleで取得してください。認証設定時は書式のみを確認し、課金リクエストを送信しません。
+    url: https://console.aisa.one
+tools:
+  - tools/economy-digest.yaml
+extra:
+  python:
+    source: provider/economy_digest.py

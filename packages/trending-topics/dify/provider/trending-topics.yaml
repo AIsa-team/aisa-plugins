@@ -1,0 +1,31 @@
+identity:
+  tags:
+    - news
+  author: aisa-team
+  name: trending-topics
+  label:
+    en_US: AIsa Trending Topics
+    ja_JP: AIsa トレンドトピック
+  description:
+    en_US: Gather Japan's X trends, recent Japanese posts, and related YouTube videos with one AIsa API key.
+    ja_JP: 1 つの AIsa API キーで日本の X トレンド、最近の日本語投稿、関連 YouTube 動画を取得します。
+  icon: icon.svg
+credentials_for_provider:
+  aisa_api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: AIsa API key
+      ja_JP: AIsa API キー
+    placeholder:
+      en_US: Paste your AIsa API key
+      ja_JP: AIsa API キーを入力してください
+    help:
+      en_US: Obtain a key from AIsa. External data requests consume your AIsa API credits.
+      ja_JP: AIsa でキーを取得してください。外部データのリクエストは AIsa API クレジットを消費します。
+    url: https://aisa.one
+tools:
+  - tools/trending-topics.yaml
+extra:
+  python:
+    source: provider/trending-topics.py
