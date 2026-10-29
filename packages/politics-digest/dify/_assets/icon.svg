@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <title>Politics Digest</title>
+  <defs><linearGradient id="bg" x1="12" y1="8" x2="116" y2="124" gradientUnits="userSpaceOnUse"><stop stop-color="#173C63"/><stop offset="1" stop-color="#082039"/></linearGradient></defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <path d="M26 53 64 30l38 23v6H26v-6Z" fill="#E8F3FF"/>
+  <path d="M35 64h10v25H35zm24 0h10v25H59zm24 0h10v25H83z" fill="#BDD8EF"/>
+  <path d="M27 94h74v9H27z" fill="#E8F3FF"/>
+  <circle cx="99" cy="30" r="13" fill="#F0BC62"/>
+  <path d="m93 30 4 4 8-9" stroke="#173C63" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

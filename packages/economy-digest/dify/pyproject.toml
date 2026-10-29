@@ -1,0 +1,7 @@
+[project]
+name = "economy-digest"
+version = "0.1.0"
+description = "Source-backed Japanese economy evidence for Dify"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["dify-plugin==0.10.2"]

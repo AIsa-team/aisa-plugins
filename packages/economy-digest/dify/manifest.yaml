@@ -1,0 +1,36 @@
+version: 0.1.0
+type: plugin
+author: aisa-team
+name: economy-digest
+label:
+  en_US: Economy Digest
+  ja_JP: 経済ニュースダイジェスト
+description:
+  en_US: Source-backed Japanese economic news from Nikkei, ready for Dify summaries.
+  ja_JP: 日経の経済ニュースを出典付きで収集し、Difyでの要約に使える根拠を返します。
+icon: icon.svg
+repo: https://github.com/AIsa-team/aisa-plugins
+contact: developer@aisa.one
+resource:
+  memory: 134217728
+  permission: {}
+plugins:
+  tools:
+    - provider/economy-digest.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: 1.16.0
+created_at: 2026-10-29T00:00:00Z
+privacy: PRIVACY.md
+tags:
+  - news
+network:
+  domains:
+    - api.aisa.one

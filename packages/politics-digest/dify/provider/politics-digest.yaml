@@ -1,0 +1,31 @@
+identity:
+  author: aisa-team
+  name: politics-digest
+  label:
+    en_US: Politics Digest
+    ja_JP: 政治ニュースダイジェスト
+  description:
+    en_US: Retrieve Japanese politics evidence from Yomiuri, Asahi, Nikkei, Mainichi, and Sankei through AIsa.
+    ja_JP: AIsa経由で読売・朝日・日経・毎日・産経の政治ニュースを出典付きで収集します。
+  icon: icon.svg
+  tags:
+    - news
+credentials_for_provider:
+  aisa_api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: AIsa API key
+      ja_JP: AIsa APIキー
+    placeholder:
+      en_US: Enter your AIsa API key
+      ja_JP: AIsa APIキーを入力
+    help:
+      en_US: Get your key from AIsa Console. Validation checks its format without a paid request.
+      ja_JP: AIsa Consoleで取得してください。認証設定時は書式のみを確認し、課金リクエストを送信しません。
+    url: https://console.aisa.one
+tools:
+  - tools/politics-digest.yaml
+extra:
+  python:
+    source: provider/politics_digest.py

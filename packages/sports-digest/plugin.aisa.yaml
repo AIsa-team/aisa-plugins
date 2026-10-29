@@ -1,0 +1,15 @@
+schema: 1
+name: sports-digest
+version: "0.1.0"
+owners: [aisa-team]
+description: Japanese sports evidence across sumo, Ohtani, Ichiro, and football.
+languages: [python]
+hosts:
+  dify: dify
+tests:
+  - language: python
+    cwd: dify
+    run: python3 -m unittest discover -s tests -v
+version_sources:
+  - dify/manifest.yaml
+  - dify/pyproject.toml
